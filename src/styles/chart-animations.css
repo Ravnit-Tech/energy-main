@@ -1,0 +1,52 @@
+/* Chart Animations */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 300ms ease-in-out;
+}
+
+/* Smooth transitions for chart switching */
+.chart-container {
+  transition: all 300ms ease-in-out;
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.chart-toggle-btn:active {
+  animation: buttonPress 200ms ease-in-out;
+}
+
+/* Smooth color transitions for toggle buttons */
+.chart-toggle-btn {
+  transition: all 200ms ease-in-out;
+}
+
+.chart-toggle-btn:hover:not(.active) {
+  opacity: 0.8;
+}
+
+/* Tooltip smooth appearance */
+.recharts-tooltip {
+  animation: fadeIn 200ms ease-in-out;
+}

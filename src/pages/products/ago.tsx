@@ -1,0 +1,54 @@
+import React, { useState } from "react";
+import Head from "next/head";
+import AgoTankSimulation from "@/components/AgoTankSimulation";
+import Link from "next/link";
+
+function Ago() {
+  const [level, setLevel] = useState(65);
+  return (
+    <div className="relative min-h-screen w-screen overflow-hidden">
+      <Head><title>AGO (Diesel) | e-Nergy</title></Head>
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/tower.jpg')" }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* CONTENT WRAPPER */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-10 flex flex-col items-center lg:flex-row lg:items-start gap-10 my-10">
+
+        {/* TANK — fixed size at every breakpoint, always centered */}
+        <div className="shrink-0 flex justify-center items-center mt-10 lg:mt-20 z-50
+                        w-[280px] h-[320px]
+                        sm:w-[380px] sm:h-[430px]
+                        lg:w-[550px] lg:h-[calc(100vh-80px)]">
+          <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg">
+            <AgoTankSimulation level={level} />
+          </div>
+        </div>
+
+        {/* RIGHT TEXT */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center text-white space-y-6 text-center lg:text-left lg:mt-20">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-primary-dark">
+            Automotive Gas Oil (AGO) Overview
+          </h2>
+          <p className="text-base sm:text-lg leading-relaxed">
+            Our Automotive Gas Oil (AGO) is a middle distillate used widely in
+            diesel engines and industrial burners. It&apos;s a versatile product that
+            sits between light diesel and heavier fuel oils and is commonly used
+            where reliable combustion and stable fuel properties are required.
+          </p>
+          <Link
+            href="/booknow?product=ago"
+            className="w-full sm:w-auto text-center text-white bg-primary py-3 px-8 rounded-lg font-bold hover:bg-primary-dark transition"
+          >
+            Book Now
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Ago;

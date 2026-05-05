@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/ravnit/.local/pipx/venvs/open-interpreter/bin/python -c \"import pkg_resources; print\\('ok'\\)\")"
+    ]
+  }
+}
