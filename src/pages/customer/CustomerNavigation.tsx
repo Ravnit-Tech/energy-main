@@ -83,6 +83,7 @@ const navigationLinks = [
 ];
 
 export default function CustomerNavigation({ user }: CustomerNavigationProps) {
+  if (!user) return null;
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
