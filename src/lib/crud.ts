@@ -11,6 +11,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Model, Document } from "mongoose";
 import { connectDB } from "./db";
+import { getSessionUser } from "./auth";
+import type { UserRole } from "./db-types";
 
 type AnyDoc = Document & Record<string, unknown>;
 
@@ -19,21 +21,25 @@ type AnyDoc = Document & Record<string, unknown>;
 export function collectionHandler<T extends AnyDoc>(
   Model: Model<T>,
   options: {
-    // Fields to allow filtering on via query string (e.g. ?status=Pending&role=customer)
     filterFields?: string[];
-    // Default sort field and direction
     defaultSort?: Record<string, 1 | -1>;
-    // Max results per page (default 100)
     pageSize?: number;
+    allowedRoles?: UserRole[];
   } = {}
 ) {
-  const { filterFields = [], defaultSort = { createdAt: -1 }, pageSize = 100 } = options;
+  const { filterFields = [], defaultSort = { createdAt: -1 }, pageSize = 100, allowedRoles } = options;
 
   return async function handler(
     req: NextApiRequest,
     res: NextApiResponse
   ) {
     await connectDB();
+
+    const user = await getSessionUser(req);
+    if (!user) return res.status(401).json({ error: "Unauthorized — please log in" });
+    if (allowedRoles && !allowedRoles.includes(user.role)) {
+      return res.status(403).json({ error: "Forbidden — insufficient role" });
+    }
 
     // ── GET: list with optional filters, pagination, sort ──
     if (req.method === "GET") {
@@ -91,17 +97,23 @@ export function collectionHandler<T extends AnyDoc>(
 export function documentHandler<T extends AnyDoc>(
   Model: Model<T>,
   options: {
-    // Fields the client is NOT allowed to update
     immutableFields?: string[];
+    allowedRoles?: UserRole[];
   } = {}
 ) {
-  const { immutableFields = ["_id", "__v"] } = options;
+  const { immutableFields = ["_id", "__v"], allowedRoles } = options;
 
   return async function handler(
     req: NextApiRequest,
     res: NextApiResponse
   ) {
     await connectDB();
+
+    const user = await getSessionUser(req);
+    if (!user) return res.status(401).json({ error: "Unauthorized — please log in" });
+    if (allowedRoles && !allowedRoles.includes(user.role)) {
+      return res.status(403).json({ error: "Forbidden — insufficient role" });
+    }
 
     const { id } = req.query as { id: string };
 

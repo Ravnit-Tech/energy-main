@@ -98,7 +98,7 @@ const MIGRATION_TIERS = [
 const ENV_VARS = [
   { key: "MONGODB_URI",        desc: "MongoDB Atlas connection string. Database name: e-nergy." },
   { key: "JWT_SECRET",         desc: "Secret for signing auth and password-reset tokens." },
-  { key: "SEED_SECRET",        desc: "Passphrase to protect the /api/db/seed endpoint. Value: e-nergy-seed-secret-2026." },
+  { key: "SEED_SECRET",        desc: "Passphrase to protect the /api/db/seed endpoint." },
   { key: "ANTHROPIC_API_KEY",  desc: "Claude API key for all 7 AI routes." },
   { key: "PAYSTACK_SECRET_KEY",desc: "Paystack secret for payment processing." },
   { key: "PAYSTACK_PUBLIC_KEY",desc: "Paystack public key for client-side payment widget." },
