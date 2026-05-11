@@ -16,7 +16,7 @@
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.575.0",
     "mongoose": "^9.4.1",
-    "next": "^15.3.3",
+    "next": "^15.3.9",
     "nigeria-state-lga-data": "^1.1.5",
     "react": "19.1.0",
     "react-country-state-city": "^1.1.12",
