@@ -4,13 +4,12 @@
  * Creates the initial admin account if none exists.
  * Protected by SEED_SECRET header.
  *
- * Body (optional): { name, email, password }
- * Defaults to: admin@energy.ng / admin123 (change immediately in prod!)
+ * Body (required): { name, email, password }
  *
  * curl -X POST https://your-app/api/db/users/seed-admin \
  *   -H "x-seed-secret: YOUR_SEED_SECRET" \
  *   -H "Content-Type: application/json" \
- *   -d '{"email":"admin@energy.ng","password":"your-strong-password"}'
+ *   -d '{"name":"Admin","email":"admin@yourdomain.ng","password":"your-strong-password"}'
  */
 import type { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
@@ -32,11 +31,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({ message: "Admin already exists", email: existing.email });
   }
 
-  const {
-    name = "PNB Admin",
-    email = "admin@energy.ng",
-    password = "admin123",
-  } = req.body ?? {};
+  const { name, email, password } = req.body ?? {};
+
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: "name, email, and password are required" });
+  }
+  if (password.length < 8) {
+    return res.status(400).json({ error: "Password must be at least 8 characters" });
+  }
 
   const passwordHash = await bcrypt.hash(password, 12);
 
@@ -52,6 +54,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   return res.status(201).json({
     message: "Admin created",
     email: admin.email,
-    warning: password === "admin123" ? "Change this password immediately in production!" : undefined,
   });
 }

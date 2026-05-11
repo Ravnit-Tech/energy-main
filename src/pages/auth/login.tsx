@@ -12,69 +12,6 @@ import { useRateLimit } from "@/hooks/useRateLimit";
 import { sanitizeString } from "@/lib/security/sanitize";
 import { api } from "@/lib/db-client";
 
-// Mock credentials — used as fallback when MongoDB is not yet connected
-const MOCK_USERS = {
-  customer1: {
-    email: "customer@energy.ng",
-    password: "customer123",
-    role: "Customer",
-    name: "Jane Customer",
-  },
-  dealer1: {
-    email: "dealer@energy.ng",
-    password: "dealer123",
-    role: "Bulk Dealer",
-    name: "John Dealer",
-    company: "Chipet Oil & Gas Ltd",
-    dealerCode: "BD-CH1P3T",
-  },
-  dealer2: {
-    email: "emeka@bulkdealer.ng",
-    password: "emeka123",
-    role: "Bulk Dealer",
-    name: "Emeka Nwachukwu",
-    company: "EastFuel Nigeria Ltd",
-    dealerCode: "BD-E4STF2",
-  },
-  dealer3: {
-    email: "tunde@oil.ng",
-    password: "tunde123",
-    role: "Bulk Dealer",
-    name: "Tunde Adeyemi",
-    company: "Southwest Oil Distributors",
-    dealerCode: "BD-SW0L3T",
-  },
-  dealer4: {
-    email: "adaeze@energy.ng",
-    password: "adaeze123",
-    role: "Bulk Dealer",
-    name: "Adaeze Obi",
-    company: "Obi Energy Supplies",
-    dealerCode: "BD-0B1EN4",
-  },
-  dealer5: {
-    email: "chukwudi@bulkdealer.ng",
-    password: "chukwudi123",
-    role: "Bulk Dealer",
-    name: "Chukwudi Eze",
-    company: "Delta Petroleum Ltd",
-    dealerCode: "BD-D3LT45",
-  },
-  dealer6: {
-    email: "yakubu@bulkdealer.ng",
-    password: "yakubu123",
-    role: "Bulk Dealer",
-    name: "Yakubu Musa",
-    company: "Sahel Energy Distributors",
-    dealerCode: "BD-SH3L06",
-  },
-  admin1: {
-    email: "admin@energy.ng",
-    password: "admin123",
-    role: "Admin",
-    name: "PNB Admin",
-  },
-};
 
 // Maps DB role values to the display/routing role strings used throughout the app
 const ROLE_DISPLAY: Record<string, string> = {
@@ -143,36 +80,7 @@ export default function Login() {
       return;
     }
 
-    // ── 2. Fallback: mock users (demo / no-DB mode) ────────────────────────────
-    const foundUser = Object.values(MOCK_USERS).find(
-      (u) => u.email === safeEmail && u.password === password
-    );
-
-    if (foundUser) {
-      try {
-        const suspended: string[] = JSON.parse(localStorage.getItem("admin_suspended_users") || "[]");
-        if (suspended.includes(foundUser.email)) {
-          setError("Your account has been suspended. Please contact support.");
-          setIsLoading(false);
-          return;
-        }
-      } catch { /**/ }
-
-      const u = foundUser as any;
-      localStorage.setItem("user", JSON.stringify({
-        email: u.email,
-        role: u.role,
-        name: u.name,
-        emailVerified: true,
-        ...(u.company    && { company:    u.company    }),
-        ...(u.dealerCode && { dealerCode: u.dealerCode }),
-      }));
-
-      router.push(roleToRoute(u.role));
-      return;
-    }
-
-    // ── 3. Check station manager credentials (localStorage fallback) ───────────
+    // ── 2. Check station manager credentials (localStorage fallback) ───────────
     try {
       const managers = JSON.parse(localStorage.getItem("station_managers") || "[]");
       const sm = managers.find((m: any) => m.email === safeEmail && m.password === password);
@@ -222,24 +130,6 @@ export default function Login() {
           <div className="absolute inset-0 bg-black/50" />
           {/* Demo credentials + greeting stacked centrally */}
           <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 gap-4">
-            {/* Demo credentials */}
-            <div className="w-full max-w-xs p-3 bg-black/60 backdrop-blur-sm border border-white/20 rounded-lg text-xs text-white">
-              <p className="font-bold mb-2 text-orange-400 uppercase tracking-wider">Demo Credentials</p>
-              <div className="space-y-1 text-white/80">
-                <p><span className="font-semibold text-white">Customer:</span> customer@energy.ng / customer123</p>
-                <p><span className="font-semibold text-white">Admin:</span> admin@energy.ng / admin123</p>
-              </div>
-              <div className="mt-2 pt-2 border-t border-white/20 space-y-1 text-white/80">
-                <p className="font-bold text-orange-400">Bulk Dealers:</p>
-                <p><span className="font-semibold text-white">John:</span> dealer@energy.ng / dealer123</p>
-                <p><span className="font-semibold text-white">Emeka:</span> emeka@bulkdealer.ng / emeka123</p>
-              </div>
-              <div className="mt-2 pt-2 border-t border-white/20 space-y-1 text-white/80">
-                <p className="font-bold text-orange-400">Station Managers:</p>
-                <p><span className="font-semibold text-white">Lagos:</span> adebayo@energy.ng / lagos123</p>
-                <p><span className="font-semibold text-white">Port Harcourt:</span> chidi@energy.ng / phc123</p>
-              </div>
-            </div>
             {/* Welcome text */}
             <div className="text-white bg-black/80 backdrop-blur-sm px-6 py-4 text-center text-2xl md:text-3xl font-bold drop-shadow-lg rounded-lg border-2 border-orange-500">
               Welcome to e-Nergy
