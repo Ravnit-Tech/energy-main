@@ -128,120 +128,15 @@ interface Depot {
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
 
-const BASE_USERS: AdminUser[] = [
-  { id: "USR-001", name: "Jane Customer", email: "customer@energy.ng", role: "Customer", status: "Active", joinedAt: "2024-01-15", lastLogin: "2026-03-27", companyName: "Sunrise Filling Station", phone: "08012345678", state: "Lagos" },
-  { id: "USR-002", name: "John Dealer", email: "dealer@energy.ng", role: "Bulk Dealer", status: "Active", joinedAt: "2024-02-01", lastLogin: "2026-03-28", companyName: "Chipet Oil & Gas Ltd", phone: "08023456789", state: "Rivers" },
-  { id: "USR-003", name: "Emeka Okafor", email: "emeka@fuels.ng", role: "Customer", status: "Active", joinedAt: "2024-03-10", lastLogin: "2026-03-25", companyName: "Okafor Energy", phone: "08034567890", state: "Anambra" },
-  { id: "USR-004", name: "Aminu Ibrahim", email: "aminu@depot.ng", role: "Bulk Dealer", status: "Suspended", joinedAt: "2024-04-05", lastLogin: "2026-02-10", companyName: "Northern Fuels Ltd", phone: "08045678901", state: "Kano" },
-  { id: "USR-005", name: "Chidi Nwosu", email: "chidi@trucks.ng", role: "Truck Owner", status: "Active", joinedAt: "2024-05-20", lastLogin: "2026-03-20", phone: "08056789012", state: "Imo" },
-  { id: "USR-006", name: "Fatima Bello", email: "fatima@station.ng", role: "Customer", status: "Active", joinedAt: "2024-06-01", lastLogin: "2026-03-26", companyName: "Bello Filling Station", phone: "08067890123", state: "Abuja" },
-  { id: "USR-007", name: "Tunde Adeyemi", email: "tunde@oil.ng", role: "Bulk Dealer", status: "Active", joinedAt: "2024-07-15", lastLogin: "2026-03-28", companyName: "Southwest Oil Distributors", phone: "08078901234", state: "Oyo" },
-  { id: "USR-008", name: "Ngozi Peters", email: "ngozi@trucks.ng", role: "Truck Owner", status: "Active", joinedAt: "2024-08-01", lastLogin: "2026-03-22", phone: "08089012345", state: "Delta" },
-  { id: "USR-009", name: "Hassan Musa", email: "hassan@fuels.ng", role: "Customer", status: "Suspended", joinedAt: "2024-09-10", lastLogin: "2026-01-15", companyName: "Northern Star Station", phone: "08090123456", state: "Kaduna" },
-  { id: "USR-010", name: "Adaeze Obi", email: "adaeze@energy.ng", role: "Bulk Dealer", status: "Active", joinedAt: "2024-10-05", lastLogin: "2026-03-27", companyName: "Obi Energy Supplies", phone: "08001234567", state: "Enugu" },
-  { id: "USR-011", name: "Emeka Nwachukwu", email: "emeka@bulkdealer.ng", role: "Bulk Dealer", status: "Active", joinedAt: "2025-01-10", lastLogin: "2026-03-28", companyName: "EastFuel Nigeria Ltd", phone: "08011223344", state: "Rivers" },
-  { id: "USR-012", name: "Chukwudi Eze", email: "chukwudi@bulkdealer.ng", role: "Bulk Dealer", status: "Active", joinedAt: "2025-02-15", lastLogin: "2026-03-27", companyName: "Delta Petroleum Ltd", phone: "08022334455", state: "Delta" },
-  { id: "USR-013", name: "Yakubu Musa", email: "yakubu@bulkdealer.ng", role: "Bulk Dealer", status: "Active", joinedAt: "2025-03-01", lastLogin: "2026-03-26", companyName: "Sahel Energy Distributors", phone: "08033445566", state: "Kano" },
-];
+const BASE_USERS: AdminUser[] = [];
 
-const BASE_SUPPLY_REQUESTS: SupplyRequest[] = [
-  { id: "SUP-REQ-001", stationName: "Sunrise Filling Station - Lagos", product: "PMS", depot: "Lagos Main Depot", quantity: "33,000 L", priority: "urgent", deliveryDate: "2026-03-30", notes: "Running low urgently", requestedBy: "Jane Customer", requestedAt: "2026-03-27T09:00:00Z", status: "Processing" },
-  { id: "SUP-REQ-002", stationName: "Sunrise Filling Station - Lekki", product: "AGO", depot: "Port Harcourt Terminal", quantity: "25,000 L", priority: "normal", deliveryDate: "2026-04-02", notes: "", requestedBy: "Jane Customer", requestedAt: "2026-03-26T14:30:00Z", status: "Pending" },
-  { id: "SUP-REQ-003", stationName: "Okafor Energy - Onitsha", product: "PMS", depot: "Enugu Fuel Depot", quantity: "45,000 L", priority: "emergency", deliveryDate: "2026-03-29", notes: "Critical - station down to 5%", requestedBy: "Emeka Okafor", requestedAt: "2026-03-28T07:00:00Z", status: "Pending" },
-  { id: "SUP-REQ-004", stationName: "Bello Filling Station - Abuja", product: "ATK", depot: "Abuja Central Terminal", quantity: "15,000 L", priority: "normal", deliveryDate: "2026-04-05", notes: "", requestedBy: "Fatima Bello", requestedAt: "2026-03-25T11:00:00Z", status: "Delivered" },
-  { id: "SUP-REQ-005", stationName: "Northern Star - Kaduna", product: "AGO", depot: "Kaduna Distribution Center", quantity: "20,000 L", priority: "urgent", deliveryDate: "2026-03-31", notes: "", requestedBy: "Hassan Musa", requestedAt: "2026-03-20T09:00:00Z", status: "Cancelled" },
-];
+const BASE_SUPPLY_REQUESTS: SupplyRequest[] = [];
 
-const BASE_PURCHASE_ORDERS: PurchaseOrder[] = [
-  { id: "PO-2026-001", date: "2026-03-20", product: "PMS", qty: "100,000 L", depot: "Lagos Main Depot", amount: "₦86,000,000", status: "Delivered", dealer: "Chipet Oil & Gas Ltd" },
-  { id: "PO-2026-002", date: "2026-03-22", product: "AGO", qty: "50,000 L", depot: "Port Harcourt Terminal", amount: "₦60,000,000", status: "In Transit", dealer: "Chipet Oil & Gas Ltd" },
-  { id: "PO-2026-003", date: "2026-03-25", product: "ATK", qty: "30,000 L", depot: "Abuja Central Terminal", amount: "₦25,800,000", status: "Processing", dealer: "Southwest Oil Distributors" },
-  { id: "PO-2026-004", date: "2026-03-27", product: "PMS", qty: "80,000 L", depot: "Kano Distribution Hub", amount: "₦68,800,000", status: "Pending", dealer: "Northern Fuels Ltd" },
-  { id: "PO-2026-005", date: "2026-03-28", product: "AGO", qty: "60,000 L", depot: "Enugu Fuel Depot", amount: "₦72,000,000", status: "Pending", dealer: "Obi Energy Supplies" },
-];
+const BASE_PURCHASE_ORDERS: PurchaseOrder[] = [];
 
-const BASE_TRUCKS: TruckRecord[] = [
-  {
-    id: "TRK-001", ownerName: "Chidi Nwosu", ownerEmail: "chidi@trucks.ng", ownerPhone: "08056789012",
-    vehicleType: "Articulated Tanker", tankCapacity: "45,000 L", compartments: "5",
-    truckRegNumber: "IMO-123-XY", tractorColor: "White", tankColor: "Silver",
-    chassisNumber: "CHS-2020-CHN-001", engineNumber: "ENG-2020-CHN-001", yearOfManufacture: "2020",
-    insuranceProvider: "AIICO Insurance", insurancePolicyNumber: "AIC-2026-00123", insuranceExpiry: "2026-12-31",
-    dprCertNumber: "DPR-2026-001", dprCertExpiry: "2026-06-30", roadWorthinessExpiry: "2026-09-30",
-    productTypes: ["PMS", "AGO"], dailyRate: "₦150,000",
-    driverName: "Emmanuel Obi", driverPhone: "08011223344", driverLicenseNumber: "DL-2022-IMO-001", driverLicenseExpiry: "2026-08-15",
-    motorBoyName: "Kelechi Eze", motorBoyPhone: "08055667788", motorBoyIdType: "NIN", motorBoyIdNumber: "12345678901",
-    status: "Approved", submittedAt: "2026-01-15", reviewNote: "All documents verified",
-    destinationState: "Lagos", destinationTown: "Apapa",
-    tractorImageUrl: "/truck1.jpg", tankImageUrl: "/truck2.jpg",
-  },
-  {
-    id: "TRK-002", ownerName: "Ngozi Peters", ownerEmail: "ngozi@trucks.ng", ownerPhone: "08089012345",
-    vehicleType: "Medium Tanker", tankCapacity: "20,000 L", compartments: "3",
-    truckRegNumber: "DEL-456-AB", tractorColor: "Red", tankColor: "White",
-    chassisNumber: "CHS-2021-NGP-002", engineNumber: "ENG-2021-NGP-002", yearOfManufacture: "2021",
-    insuranceProvider: "Leadway Assurance", insurancePolicyNumber: "LW-2026-00456", insuranceExpiry: "2026-11-30",
-    dprCertNumber: "DPR-2026-002", dprCertExpiry: "2026-08-31", roadWorthinessExpiry: "2026-07-31",
-    productTypes: ["PMS", "AGO", "ATK"], dailyRate: "₦85,000",
-    driverName: "Samuel Peters", driverPhone: "08077889900", driverLicenseNumber: "DL-2021-DEL-002", driverLicenseExpiry: "2026-05-20",
-    motorBoyName: "John Ebi", motorBoyPhone: "08066778899", motorBoyIdType: "Voter's Card", motorBoyIdNumber: "VTR-2019-001122",
-    status: "Approved", submittedAt: "2026-02-01", reviewNote: "",
-    destinationState: "Rivers", destinationTown: "Port Harcourt",
-    tractorImageUrl: "/truck2.jpg", tankImageUrl: "/truck3.jpg",
-  },
-  {
-    id: "TRK-003", ownerName: "Yusuf Garba", ownerEmail: "yusuf@transport.ng", ownerPhone: "08011122233",
-    vehicleType: "Articulated Tanker", tankCapacity: "33,000 L", compartments: "4",
-    truckRegNumber: "KNO-789-CD", tractorColor: "Blue", tankColor: "Gray",
-    chassisNumber: "CHS-2022-YGA-003", engineNumber: "ENG-2022-YGA-003", yearOfManufacture: "2022",
-    insuranceProvider: "AXA Mansard", insurancePolicyNumber: "AXA-2026-00789", insuranceExpiry: "2026-10-31",
-    dprCertNumber: "DPR-2026-003", dprCertExpiry: "2026-05-31", roadWorthinessExpiry: "2026-08-31",
-    productTypes: ["PMS"], dailyRate: "₦120,000",
-    driverName: "Ahmed Garba", driverPhone: "08099001122", driverLicenseNumber: "DL-2023-KAN-003", driverLicenseExpiry: "2027-01-10",
-    motorBoyName: "Suleiman Yusuf", motorBoyPhone: "08088990011", motorBoyIdType: "NIN", motorBoyIdNumber: "98765432109",
-    status: "Pending Review", submittedAt: "2026-03-20", reviewNote: "",
-    destinationState: "Kano", destinationTown: "Kano Municipal",
-    tractorImageUrl: "/truck3.jpg", tankImageUrl: "/truck1.jpg",
-  },
-  {
-    id: "TRK-004", ownerName: "Biodun Afolabi", ownerEmail: "biodun@trucks.ng", ownerPhone: "08022233344",
-    vehicleType: "Mini Tanker", tankCapacity: "10,000 L", compartments: "2",
-    truckRegNumber: "OYO-321-EF", tractorColor: "Yellow", tankColor: "White",
-    chassisNumber: "CHS-2023-BAF-004", engineNumber: "ENG-2023-BAF-004", yearOfManufacture: "2023",
-    insuranceProvider: "Cornerstone Insurance", insurancePolicyNumber: "CSI-2026-00111", insuranceExpiry: "2026-02-28",
-    dprCertNumber: "DPR-2026-004", dprCertExpiry: "2026-01-31", roadWorthinessExpiry: "2026-12-31",
-    productTypes: ["AGO", "ATK"], dailyRate: "₦60,000",
-    driverName: "Tola Afolabi", driverPhone: "08033445566", driverLicenseNumber: "DL-2023-OYO-004", driverLicenseExpiry: "2026-05-20",
-    motorBoyName: "Rotimi Ogunleye", motorBoyPhone: "08044556677", motorBoyIdType: "Driver's License", motorBoyIdNumber: "DL-2020-OYO-555",
-    status: "Pending Review", submittedAt: "2026-03-25", reviewNote: "",
-    destinationState: "Oyo", destinationTown: "Ibadan North",
-    tractorImageUrl: "/truck1.jpg", tankImageUrl: "/truck2.jpg",
-  },
-  {
-    id: "TRK-005", ownerName: "Okonkwo Emmanuel", ownerEmail: "okonkwo@ng.com", ownerPhone: "08033344455",
-    vehicleType: "Articulated Tanker", tankCapacity: "45,000 L", compartments: "5",
-    truckRegNumber: "ANA-654-GH", tractorColor: "Green", tankColor: "Silver",
-    chassisNumber: "CHS-2019-OKE-005", engineNumber: "ENG-2019-OKE-005", yearOfManufacture: "2019",
-    insuranceProvider: "NEM Insurance", insurancePolicyNumber: "NEM-2025-00999", insuranceExpiry: "2025-09-30",
-    dprCertNumber: "DPR-2024-005", dprCertExpiry: "2024-12-31", roadWorthinessExpiry: "2025-06-30",
-    productTypes: ["PMS", "AGO"], dailyRate: "₦140,000",
-    driverName: "Peter Okonkwo", driverPhone: "08066677788", driverLicenseNumber: "DL-2020-ANA-005", driverLicenseExpiry: "2025-11-30",
-    motorBoyName: "Chukwuemeka Eze", motorBoyPhone: "08077788899", motorBoyIdType: "International Passport", motorBoyIdNumber: "A12345678",
-    status: "Rejected", submittedAt: "2026-02-15", reviewNote: "DPR certificate expired. Resubmit with valid documents.",
-    destinationState: "Anambra", destinationTown: "Onitsha",
-    tractorImageUrl: "/truck3.jpg", tankImageUrl: "/truck1.jpg",
-  },
-];
+const BASE_TRUCKS: TruckRecord[] = [];
 
-const BASE_TRANSACTIONS: Transaction[] = [
-  { id: "TXN-2026-001", date: "2026-03-27", type: "Fuel Purchase", user: "Jane Customer", depot: "Lagos Main Depot", product: "PMS", quantity: "10,000 L", totalAmount: "₦8,600,000", status: "Completed", paymentMethod: "Bank Transfer" },
-  { id: "TXN-2026-002", date: "2026-03-26", type: "Truck Rental", user: "Emeka Okafor", totalAmount: "₦300,000", status: "Completed", paymentMethod: "POS" },
-  { id: "TXN-2026-003", date: "2026-03-25", type: "Fuel Purchase", user: "Fatima Bello", depot: "Abuja Central Terminal", product: "AGO", quantity: "5,000 L", totalAmount: "₦6,000,000", status: "Completed", paymentMethod: "Bank Transfer" },
-  { id: "TXN-2026-004", date: "2026-03-24", type: "Union Dues", user: "Jane Customer", totalAmount: "₦25,000", status: "Completed", paymentMethod: "Card" },
-  { id: "TXN-2026-005", date: "2026-03-23", type: "Fuel Purchase", user: "Hassan Musa", depot: "Kaduna Distribution Center", product: "PMS", quantity: "8,000 L", totalAmount: "₦6,880,000", status: "Failed", paymentMethod: "Bank Transfer" },
-  { id: "TXN-2026-006", date: "2026-03-22", type: "Truck Rental", user: "Fatima Bello", totalAmount: "₦170,000", status: "Pending", paymentMethod: "Bank Transfer" },
-  { id: "TXN-2026-007", date: "2026-03-20", type: "Fuel Purchase", user: "Emeka Okafor", depot: "Enugu Fuel Depot", product: "AGO", quantity: "12,000 L", totalAmount: "₦14,400,000", status: "Completed", paymentMethod: "Bank Transfer" },
-];
+const BASE_TRANSACTIONS: Transaction[] = [];
 
 const DEPOTS: Depot[] = [
   { name: "Lagos Main Depot", location: "Lagos", PMS: { level: 72, price: "₦860/L", status: "Available" }, AGO: { level: 58, price: "₦1,200/L", status: "Available" }, ATK: { level: 45, price: "₦860/L", status: "Limited" } },
@@ -2470,11 +2365,7 @@ interface StationManager {
   createdAt: string;
 }
 
-const BASE_STATION_MANAGERS: StationManager[] = [
-  { id: "SM-001", name: "Adebayo Okafor",  email: "adebayo@energy.ng", password: "lagos123", depot: "Lagos Main Depot",        status: "Active", createdAt: "2025-12-01" },
-  { id: "SM-002", name: "Chidi Amaechi",   email: "chidi@energy.ng",   password: "phc123",   depot: "Port Harcourt Terminal",  status: "Active", createdAt: "2025-12-03" },
-  { id: "SM-003", name: "Fatima Bello",    email: "fatima.sm@energy.ng", password: "abuja123", depot: "Abuja Central Terminal", status: "Active", createdAt: "2025-12-05" },
-];
+const BASE_STATION_MANAGERS: StationManager[] = [];
 
 function SectionStationManagers({ setToast, depots }: { setToast: (m: string) => void; depots: Depot[] }) {
   const [managers, setManagers] = useState<StationManager[]>(BASE_STATION_MANAGERS);

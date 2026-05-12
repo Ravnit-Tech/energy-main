@@ -24,17 +24,7 @@ const TYPE_CONFIG: Record<NotifType, { color: string; bg: string; border: string
   reconciliation: { color: "text-yellow-300", bg: "bg-yellow-500/30", border: "border-yellow-500/50", label: "Reconciliation",  icon: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
 };
 
-const BASE_NOTIFICATIONS: Notification[] = [
-  { id: "stock-atk-001",  type: "stock",          title: "ATK Stock Low",               message: "ATK Tank 2 is at 1.9M L — approaching your 1.0M L threshold. Consider creating an allocation.",                          href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 1 * 3600000).toISOString(),  read: false },
-  { id: "delivery-pms",   type: "delivery",        title: "PMS Delivery Confirmed",      message: "150,000 L of PMS from Lagos Main Depot has been delivered. Truck LAG-123-XY arrived 2026-03-25.",                           href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 3 * 3600000).toISOString(),  read: false },
-  { id: "order-po-002",   type: "order",           title: "Allocation In Transit",   message: "ALLOC-2026-002: 80,000 L AGO from Port Harcourt Terminal is now in transit. Expected arrival: 2026-04-03.",                    href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 5 * 3600000).toISOString(),  read: false },
-  { id: "payment-bkr-001",type: "payment",         title: "Payment Received",            message: "₦36,000,000 received from Lekki Junction for AGO purchase (30,000 L). Outstanding balance cleared.",                        href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 8 * 3600000).toISOString(),  read: true  },
-  { id: "recon-pms-mar",  type: "reconciliation",  title: "Reconciliation Variance",     message: "PMS variance of −200,000 L detected during today's reconciliation. Please review and flag if necessary.",                   href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 12 * 3600000).toISOString(), read: false },
-  { id: "order-po-003",   type: "order",           title: "Allocation Processing",   message: "ALLOC-2026-003: 60,000 L ATK from Abuja Central Terminal is now being processed by the depot.",                               href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 18 * 3600000).toISOString(), read: true  },
-  { id: "system-welcome", type: "system",          title: "Welcome to e-Nergy",          message: "Your Bulk Dealer dashboard is live. Track stock levels, manage allocations, view profit margins, and more.",            href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 24 * 3600000).toISOString(), read: true  },
-  { id: "delivery-atk",   type: "delivery",        title: "ATK Delivery Scheduled",      message: "80,000 L ATK from Abuja Central Terminal scheduled for 2026-04-05. Truck ABJ-456-YZ assigned.",                             href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 36 * 3600000).toISOString(), read: true  },
-  { id: "payment-bkr-002",type: "payment",         title: "Outstanding Payment Alert",   message: "Chipet Oil & Gas (BUY-006) has ₦84,000,000 outstanding from ALLOC-2026-002. Payment due in 7 days.",                          href: "/bulk-dealer/dashboard", timestamp: new Date(Date.now() - 48 * 3600000).toISOString(), read: true  },
-];
+const BASE_NOTIFICATIONS: Notification[] = [];
 
 const STORAGE_KEY = "bulk_dealer_notifications";
 

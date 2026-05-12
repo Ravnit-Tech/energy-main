@@ -48,11 +48,11 @@ const EMPTY: CustomerProfile = {
 
 // Mock identity data injected when localStorage has none
 const MOCK_IDENTITY = {
-  officialIdType:     "nin",
-  idNumber:           "12345678901",
-  idIssueDate:        "2019-03-15",
-  idExpiryDate:       "2029-03-14",
-  idIssuingAuthority: "National Identity Management Commission (NIMC)",
+  officialIdType:     "",
+  idNumber:           "",
+  idIssueDate:        "",
+  idExpiryDate:       "",
+  idIssuingAuthority: "",
 };
 
 const ID_TYPE_LABELS: Record<string, string> = {

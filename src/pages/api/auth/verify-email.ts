@@ -34,16 +34,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({ ok: true, message: "Email already verified" });
   }
 
-  // ── OTP validation ────────────────────────────────────────────────────────
-  // In production: compare bcrypt.compare(code, user.emailVerifyCode)
-  // and check user.emailVerifyExp > Date.now()
-  //
-  // For now: accept the demo code "123456" or the stored plain code
-  const isDemo = code === "123456";
   const isStored = user.emailVerifyCode && user.emailVerifyCode === code;
   const isExpired = user.emailVerifyExp && new Date(user.emailVerifyExp) < new Date();
 
-  if (!isDemo && (!isStored || isExpired)) {
+  if (!isStored || isExpired) {
     return res.status(400).json({ error: "Invalid or expired code" });
   }
 

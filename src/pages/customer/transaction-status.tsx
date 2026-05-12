@@ -33,16 +33,7 @@ interface TimelineStep {
 
 // ─── Mock base transactions ───────────────────────────────────────────────────
 
-const MOCK_TRANSACTIONS: Transaction[] = [
-  { id: "ENR-2025-001A", date: "2025-03-20", type: "Fuel Purchase", depot: "Lagos Main Depot",          product: "PMS", quantity: "33,000",  unitPrice: "₦650.00",    totalAmount: "₦21,450,000", status: "Completed", paymentMethod: "Bank Transfer",  truckNumber: "ABC-123-XY" },
-  { id: "ENR-2025-002B", date: "2025-03-18", type: "Fuel Purchase", depot: "Port Harcourt Terminal",    product: "AGO", quantity: "45,000",  unitPrice: "₦720.00",    totalAmount: "₦32,400,000", status: "Completed", paymentMethod: "Card Payment",   truckNumber: "DEF-456-ZA" },
-  { id: "ENR-2025-004D", date: "2025-03-12", type: "Fuel Purchase", depot: "Kaduna Distribution Center",product: "PMS", quantity: "33,000",  unitPrice: "₦650.00",    totalAmount: "₦21,450,000", status: "Pending",   paymentMethod: "Bank Transfer",  truckNumber: "JKL-012-DE" },
-  { id: "ENR-2025-006F", date: "2025-03-08", type: "Fuel Purchase", depot: "Kano Distribution Hub",     product: "PMS", quantity: "33,000",  unitPrice: "₦650.00",    totalAmount: "₦21,450,000", status: "Failed",    paymentMethod: "Card Payment",   truckNumber: "PQR-678-HI" },
-  { id: "TRK-2025-001A", date: "2025-03-22", type: "Truck Rental",  depot: "Lagos Main Depot",          product: "Premium Tanker A", quantity: "3 days",  unitPrice: "₦85,000/day",  totalAmount: "₦255,000",    status: "Completed", paymentMethod: "Bank Transfer",  truckNumber: "TRK-001"    },
-  { id: "TRK-2025-003C", date: "2025-03-11", type: "Truck Rental",  depot: "Abuja Central Terminal",    product: "Compact Tanker D", quantity: "2 days",  unitPrice: "₦75,000/day",  totalAmount: "₦150,000",    status: "Pending",   paymentMethod: "Card Payment",   truckNumber: "TRK-004"    },
-  { id: "DUE-2025-001A", date: "2025-03-19", type: "Union Dues",    depot: "Lagos Main Depot",          product: "Annual Membership", quantity: "—",      unitPrice: "—",            totalAmount: "₦250,000",    status: "Completed", paymentMethod: "Bank Transfer",  truckNumber: "—"          },
-  { id: "DUE-2025-003C", date: "2025-03-07", type: "Union Dues",    depot: "Abuja Central Terminal",    product: "Regulatory Compliance", quantity: "—", unitPrice: "—",            totalAmount: "₦75,000",     status: "Pending",   paymentMethod: "Card Payment",   truckNumber: "—"          },
-];
+const MOCK_TRANSACTIONS: Transaction[] = [];
 
 // ─── Timeline generator ───────────────────────────────────────────────────────
 

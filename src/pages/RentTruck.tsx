@@ -114,80 +114,14 @@ interface OwnerTruck {
 }
 
 const MOCK_TRUCK_OWNER = {
-  name: "Emeka Okonkwo",
-  email: "truckowner@pnb.com",
-  password: "trucks123",
-  phone: "+234 803 456 7890",
-  company: "Okonkwo Petroleum Logistics",
-  ownerId: "TO-2024-001",
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  ownerId: "",
 };
 
-const INITIAL_OWNER_TRUCKS: OwnerTruck[] = [
-  {
-    id: "OWN-001", listingId: "TRK-001",
-    name: "Premium Tanker A", vehicleType: "Articulated Tanker", capacity: "33,000",
-    regNumber: "LND-341-XY", tractorColor: "White", tankColor: "Silver",
-    chassisNumber: "CHS-2020-PTA-001", engineNumber: "ENG-2020-PTA-001",
-    yearOfManufacture: "2020", insuranceProvider: "AIICO Insurance",
-    insurancePolicyNumber: "AIC-2024-00123", insuranceExpiry: "2025-12-31",
-    dprCertNumber: "DPR-2024-001", dprCertExpiry: "2025-06-30",
-    roadWorthinessExpiry: "2025-09-30",
-    productTypes: ["PMS (Petrol)", "AGO (Diesel)", "ATK (Jet Fuel)"],
-    dailyRate: 85000,
-    driverName: "Biodun Adeyemi", driverPhone: "+234 802 111 2233",
-    driverLicenseNumber: "DL-2022-ABJ-001", driverLicenseExpiry: "2026-03-15",
-    motorBoyName: "Tunde Balogun", motorBoyPhone: "+234 803 444 5566",
-    status: "approved", submittedDate: "2024-12-01", approvedDate: "2024-12-10",
-  },
-  {
-    id: "OWN-002", listingId: "TRK-002",
-    name: "Heavy Duty Tanker B", vehicleType: "Articulated Tanker", capacity: "45,000",
-    regNumber: "ABJ-892-QR", tractorColor: "Red", tankColor: "White",
-    chassisNumber: "CHS-2021-HDT-002", engineNumber: "ENG-2021-HDT-002",
-    yearOfManufacture: "2021", insuranceProvider: "Leadway Assurance",
-    insurancePolicyNumber: "LW-2024-00456", insuranceExpiry: "2025-11-30",
-    dprCertNumber: "DPR-2024-002", dprCertExpiry: "2025-08-31",
-    roadWorthinessExpiry: "2025-07-31",
-    productTypes: ["PMS (Petrol)", "AGO (Diesel)"],
-    dailyRate: 120000,
-    driverName: "Chidi Nwosu", driverPhone: "+234 806 777 8899",
-    driverLicenseNumber: "DL-2021-PHC-002", driverLicenseExpiry: "2025-11-20",
-    motorBoyName: "Kelvin Eze", motorBoyPhone: "+234 807 222 3344",
-    status: "approved", submittedDate: "2025-01-05", approvedDate: "2025-01-15",
-  },
-  {
-    id: "OWN-003", listingId: "TRK-003",
-    name: "Compact Rigid Tanker", vehicleType: "Rigid Tanker", capacity: "33,000",
-    regNumber: "KAN-556-FG", tractorColor: "Blue", tankColor: "Gray",
-    chassisNumber: "CHS-2022-CRT-003", engineNumber: "ENG-2022-CRT-003",
-    yearOfManufacture: "2022", insuranceProvider: "AXA Mansard",
-    insurancePolicyNumber: "AXA-2024-00789", insuranceExpiry: "2025-10-31",
-    dprCertNumber: "DPR-2024-003", dprCertExpiry: "2025-05-31",
-    roadWorthinessExpiry: "2025-08-31",
-    productTypes: ["PMS (Petrol)", "AGO (Diesel)"],
-    dailyRate: 75000,
-    driverName: "Ibrahim Musa", driverPhone: "+234 811 333 4455",
-    driverLicenseNumber: "DL-2023-KAN-003", driverLicenseExpiry: "2026-01-10",
-    motorBoyName: "Suleiman Yusuf", motorBoyPhone: "+234 812 555 6677",
-    status: "under_review", submittedDate: "2025-03-20",
-  },
-  {
-    id: "OWN-004", listingId: "TRK-004",
-    name: "Mini Tanker F", vehicleType: "Mini Tanker", capacity: "20,000",
-    regNumber: "IBA-221-ST", tractorColor: "Yellow", tankColor: "White",
-    chassisNumber: "CHS-2023-MTF-004", engineNumber: "ENG-2023-MTF-004",
-    yearOfManufacture: "2023", insuranceProvider: "Cornerstone Insurance",
-    insurancePolicyNumber: "CSI-2025-00111", insuranceExpiry: "2026-02-28",
-    dprCertNumber: "DPR-2025-004", dprCertExpiry: "2026-01-31",
-    roadWorthinessExpiry: "2025-12-31",
-    productTypes: ["PMS (Petrol)"],
-    dailyRate: 45000,
-    driverName: "Seun Adesanya", driverPhone: "+234 815 888 9900",
-    driverLicenseNumber: "DL-2023-IBA-004", driverLicenseExpiry: "2026-05-20",
-    motorBoyName: "Rotimi Ogunleye", motorBoyPhone: "+234 816 111 2233",
-    status: "under_review", submittedDate: "2025-03-22",
-  },
-];
+const INITIAL_OWNER_TRUCKS: OwnerTruck[] = [];
 
 // ─── Apply Admin Decisions ────────────────────────────────────────────────────
 
@@ -212,63 +146,7 @@ function applyAdminDecisions(trucks: OwnerTruck[]): OwnerTruck[] {
 
 // ─── Mock Truck Database ──────────────────────────────────────────────────────
 
-const MOCK_TRUCKS: TruckListing[] = [
-  {
-    id: "TRK-001",
-    name: "Premium Tanker A",
-    capacity: "33,000",
-    vehicleType: "Articulated Tanker",
-    productTypes: ["PMS", "AGO", "ATK"],
-    pricePerDay: 85000,
-    image: truck1,
-    available: true,
-    features: ["GPS Tracking", "Temperature Control", "Safety Certified", "DPR Licensed"],
-  },
-  {
-    id: "TRK-002",
-    name: "Heavy Duty Tanker B",
-    capacity: "45,000",
-    vehicleType: "Articulated Tanker",
-    productTypes: ["PMS", "AGO"],
-    pricePerDay: 120000,
-    image: truck2,
-    available: true,
-    features: ["GPS Tracking", "Multi-Compartment", "Safety Certified", "24/7 Support"],
-  },
-  {
-    id: "TRK-003",
-    name: "Mega Tanker C",
-    capacity: "60,000",
-    vehicleType: "Articulated Tanker",
-    productTypes: ["AGO", "ATK"],
-    pricePerDay: 150000,
-    image: truck3,
-    available: true,
-    features: ["GPS Tracking", "Temperature Control", "Multi-Compartment", "Premium Insurance"],
-  },
-  {
-    id: "TRK-004",
-    name: "Compact Tanker D",
-    capacity: "33,000",
-    vehicleType: "Rigid Tanker",
-    productTypes: ["PMS", "AGO"],
-    pricePerDay: 75000,
-    image: truck1,
-    available: true,
-    features: ["GPS Tracking", "Safety Certified", "DPR Licensed"],
-  },
-  {
-    id: "TRK-005",
-    name: "Standard Tanker E",
-    capacity: "45,000",
-    vehicleType: "Rigid Tanker",
-    productTypes: ["PMS", "AGO", "ATK"],
-    pricePerDay: 95000,
-    image: truck2,
-    available: true,
-    features: ["GPS Tracking", "Multi-Compartment", "Safety Certified"],
-  },
-];
+const MOCK_TRUCKS: TruckListing[] = [];
 
 // ─── Nigerian States and LGAs (from nigeria-state-lga-data) ──────────────────
 
@@ -908,7 +786,6 @@ export default function RentTruck() {
                       >
                         Login →
                       </button>
-                      <p className="text-xs text-gray-400 text-center">Demo: truckowner@pnb.com / trucks123</p>
                     </form>
                   </div>
                 </div>
@@ -937,13 +814,6 @@ export default function RentTruck() {
           {/* Main Content */}
           <div className="flex-1 p-6 md:p-8 overflow-y-auto" style={{ maxHeight: "85vh" }}>
 
-            {/* Demo credentials hint */}
-            <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-800">
-              <p className="font-bold mb-2">Demo Credentials:</p>
-              <div className="space-y-1">
-                <p><span className="font-semibold">Truck Owner:</span> truckowner@pnb.com / trucks123</p>
-              </div>
-            </div>
 
             {truckOwner && !showOwnerRegister ? (
             /* ── TRUCK OWNER DASHBOARD ── */

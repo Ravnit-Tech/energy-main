@@ -41,48 +41,7 @@ interface LoadingDetails {
 
 // ─── Mock purchase records (replace with API call) ───────────────────────────
 
-const MOCK_RECORDS: Record<string, PurchaseRecord> = {
-  "ENR-2025-001A": {
-    orderId: "ENR-2025-001A",
-    companyName: "Chipet Oil & Gas Ltd",
-    ownerName: "Chukwuemeka Okafor",
-    email: "info@chipetoil.com",
-    telephone: "+234 814 343 2374",
-    productType: "AGO (Diesel)",
-    productQuantity: "33,000",
-    haulageTruck: "Owned Truck",
-    driverName: "Emeka Nwosu",
-    driverIdType: "Driver's License",
-    driverIdNumber: "DL-9823741",
-    truckRegNumber: "LND-432-XW",
-    tankCapacity: "33,000 Litres",
-    paymentMethod: "Bank Transfer",
-    transactionRef: "FBN-TXN-20250103-884923",
-    purchaseDate: "January 3, 2025",
-    stationAddress: "124, Marwa road, Ijegun waterside, Lagos.",
-    loadingDepot: "Lagos Main Depot",
-  },
-  "ENR-2025-002B": {
-    orderId: "ENR-2025-002B",
-    companyName: "Stallion Petroleum Ltd",
-    ownerName: "Fatima Al-Hassan",
-    email: "fatima@stallionpetro.ng",
-    telephone: "+234 802 991 3345",
-    productType: "PMS (Petrol)",
-    productQuantity: "45,000",
-    haulageTruck: "Rent Truck",
-    driverName: "Biodun Adeleke",
-    driverIdType: "NIN",
-    driverIdNumber: "NIN-33847210",
-    truckRegNumber: "ABJ-211-ZZ",
-    tankCapacity: "45,000 Litres",
-    paymentMethod: "Paystack",
-    transactionRef: "PSK-REF-20250104-119283",
-    purchaseDate: "January 4, 2025",
-    stationAddress: "Plot 7, Area 11 Industrial Layout, Abuja.",
-    loadingDepot: "Abuja Central Terminal",
-  },
-};
+const MOCK_RECORDS: Record<string, PurchaseRecord> = {};
 
 const inputClass =
   "w-full border border-gray-300 rounded px-3 py-2 text-sm text-gray-800 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition placeholder-gray-400 bg-white";

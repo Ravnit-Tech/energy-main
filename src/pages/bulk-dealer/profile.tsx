@@ -25,9 +25,9 @@ const EMPTY: DealerProfile = {
 };
 
 const MOCK_IDENTITY = {
-  officialIdType: "cac", idNumber: "RC-2045891",
-  idIssueDate: "2018-06-10", idExpiryDate: "2028-06-09",
-  idIssuingAuthority: "Corporate Affairs Commission (CAC)",
+  officialIdType: "", idNumber: "",
+  idIssueDate: "", idExpiryDate: "",
+  idIssuingAuthority: "",
 };
 
 const ID_TYPE_LABELS: Record<string, string> = {
@@ -125,16 +125,6 @@ export default function BulkDealerProfile() {
     const saved = localStorage.getItem("bulk_dealer_profile");
     const base: DealerProfile = saved ? JSON.parse(saved) : {
       ...EMPTY, name: u.name, email: u.email, role: u.role,
-      companyName: "Chipet Oil & Gas Ltd", rcNumber: "RC-2045891",
-      dprLicence: "DPR/BK/2021/00342", tinNumber: "12345678-0001",
-      headOfficeAddress: "14 Broad Street, Lagos Island", state: "Lagos", lga: "Lagos Island",
-      officialIdType:     MOCK_IDENTITY.officialIdType,
-      idNumber:           MOCK_IDENTITY.idNumber,
-      idIssueDate:        MOCK_IDENTITY.idIssueDate,
-      idExpiryDate:       MOCK_IDENTITY.idExpiryDate,
-      idIssuingAuthority: MOCK_IDENTITY.idIssuingAuthority,
-      bankName: "Zenith Bank", accountName: "Chipet Oil & Gas Ltd",
-      accountNumber: "2012345678", bankBranch: "Lagos Island Branch",
     };
     setProfile(base);
     if (!saved) localStorage.setItem("bulk_dealer_profile", JSON.stringify(base));

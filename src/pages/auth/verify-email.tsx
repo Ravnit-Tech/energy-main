@@ -7,8 +7,6 @@ import BottomNavbar from "@/components/ButtomNavbar";
 import tower from "@/../public/tower.jpg";
 import { api } from "@/lib/db-client";
 
-const MOCK_CODE = "123456";
-
 export default function VerifyEmail() {
   const router = useRouter();
   const { email } = router.query;
@@ -69,25 +67,6 @@ export default function VerifyEmail() {
       } catch { /**/ }
 
       router.push("/auth/login?verified=1");
-      return;
-    }
-
-    // ── 2. Fallback: mock code check (no DB / demo mode) ─────────────────────
-    if (code === MOCK_CODE) {
-      try {
-        const stored = JSON.parse(localStorage.getItem("user") || "{}");
-        stored.emailVerified = true;
-        localStorage.setItem("user", JSON.stringify(stored));
-
-        const role = (stored.role ?? "").toLowerCase();
-        if (role === "bulk dealer" || role === "bulk_dealer") {
-          router.push("/bulk-dealer/dashboard");
-        } else {
-          router.push("/customer");
-        }
-      } catch {
-        router.push("/auth/login");
-      }
       return;
     }
 
@@ -171,9 +150,6 @@ export default function VerifyEmail() {
             <button onClick={handleResend} className="text-orange-500 font-semibold hover:underline">
               Resend code
             </button>
-          </p>
-          <p className="text-xs text-gray-400 mt-3">
-            Demo: use code <span className="font-mono font-bold">123456</span>
           </p>
         </div>
       </div>

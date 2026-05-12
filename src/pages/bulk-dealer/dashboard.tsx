@@ -41,49 +41,18 @@ const STOCK_VALUE = {
   PMS: { amount: "₦17,345,985.90", buyPrice: 617,  sellPrice: 680  },
 };
 
-const MOCK_DISPENSE = [
-  { time: "06:30", operator: "Emeka Okafor",   product: "PMS", qty: "45,000 L", pump: "Pump 1", variance: "−200 L" },
-  { time: "08:15", operator: "Fatima Bello",   product: "AGO", qty: "30,000 L", pump: "Pump 2", variance: "0 L"    },
-  { time: "10:00", operator: "James Adeyemi",  product: "ATK", qty: "20,000 L", pump: "Pump 3", variance: "+150 L" },
-  { time: "12:45", operator: "Emeka Okafor",   product: "PMS", qty: "60,000 L", pump: "Pump 1", variance: "−100 L" },
-  { time: "14:30", operator: "Chioma Eze",     product: "AGO", qty: "25,000 L", pump: "Pump 2", variance: "0 L"    },
-  { time: "16:00", operator: "James Adeyemi",  product: "PMS", qty: "15,000 L", pump: "Pump 1", variance: "+50 L"  },
-];
-
-const MOCK_DELIVERIES = [
-  { product: "PMS", date: "2026-03-25", qty: "150,000 L", truck: "LAG-123-XY", depot: "Lagos Main Depot",          next: "2026-04-02" },
-  { product: "ATK", date: "2026-03-20", qty: "80,000 L",  truck: "ABJ-456-YZ", depot: "Abuja Central Terminal",    next: "2026-04-05" },
-  { product: "AGO", date: "2026-03-27", qty: "120,000 L", truck: "PH-789-ZA",  depot: "Port Harcourt Terminal",    next: "2026-04-03" },
-];
-
-const MOCK_PURCHASE_ORDERS = [
-  { id: "ALLOC-2026-001", date: "2026-03-24", product: "PMS", qty: "150,000 L", depot: "Lagos Main Depot",          amount: "₦92,550,000",  status: "Delivered"  },
-  { id: "ALLOC-2026-002", date: "2026-03-26", product: "AGO", qty: "80,000 L",  depot: "Port Harcourt Terminal",    amount: "₦84,000,000",  status: "In Transit" },
-  { id: "ALLOC-2026-003", date: "2026-03-27", product: "ATK", qty: "60,000 L",  depot: "Abuja Central Terminal",    amount: "₦39,000,000",  status: "Processing" },
-  { id: "ALLOC-2026-004", date: "2026-03-28", product: "PMS", qty: "200,000 L", depot: "Lagos Main Depot",          amount: "₦123,400,000", status: "Pending"    },
-];
-
-const MOCK_SALES = [
-  { date: "2026-03-25", product: "PMS", qty: "45,000 L",  buyer: "Ikeja Fuel Ltd",       amount: "₦30,600,000", margin: "₦2,835,000" },
-  { date: "2026-03-26", product: "AGO", qty: "30,000 L",  buyer: "Lekki Junction",       amount: "₦36,000,000", margin: "₦4,500,000" },
-  { date: "2026-03-27", product: "ATK", qty: "20,000 L",  buyer: "Mainland Petroleum",   amount: "₦14,400,000", margin: "₦1,400,000" },
-  { date: "2026-03-27", product: "PMS", qty: "60,000 L",  buyer: "Surulere Gas Station", amount: "₦40,800,000", margin: "₦3,780,000" },
-  { date: "2026-03-28", product: "AGO", qty: "25,000 L",  buyer: "Delta Gas Co.",        amount: "₦30,000,000", margin: "₦3,750,000" },
-];
-
-const RECONCILIATION = [
-  { product: "PMS", expected: "9.25M L", actual: "9.05M L", variance: "−200,000 L", status: "Minor Variance" },
-  { product: "ATK", expected: "4.70M L", actual: "4.72M L", variance: "+20,000 L",  status: "OK"             },
-  { product: "AGO", expected: "7.30M L", actual: "7.30M L", variance: "0 L",        status: "Balanced"       },
-];
-
-const RECON_HISTORY = [
-  { date: "2026-03-28", product: "PMS", variance: "−200,000 L", by: "John Dealer", status: "Flagged"   },
-  { date: "2026-03-27", product: "AGO", variance: "0 L",        by: "John Dealer", status: "Cleared"   },
-  { date: "2026-03-26", product: "ATK", variance: "+15,000 L",  by: "John Dealer", status: "Cleared"   },
-  { date: "2026-03-25", product: "PMS", variance: "−50,000 L",  by: "John Dealer", status: "Cleared"   },
-  { date: "2026-03-24", product: "AGO", variance: "+5,000 L",   by: "John Dealer", status: "Cleared"   },
-];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MOCK_DISPENSE: any[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MOCK_DELIVERIES: any[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MOCK_PURCHASE_ORDERS: any[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MOCK_SALES: any[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RECONCILIATION: any[] = [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RECON_HISTORY: any[] = [];
 
 const NAV_SECTIONS = [
   ["Current Stock Level", "Stock Value", "Stock Reconciliation"],
@@ -195,14 +164,7 @@ const CALIBRATION_LOG = [
 
 const STOCK_PRICES: Record<string, number> = { PMS: 617, ATK: 650, AGO: 1050 };
 
-const DEALER_STOCK_DEFAULTS: Record<string, Record<string, { level: number; max: number }>> = {
-  "dealer@energy.ng":       { PMS: { level: 9.25, max: 15 }, AGO: { level: 7.30, max: 10 }, ATK: { level: 4.70, max: 10 } },
-  "emeka@bulkdealer.ng":    { PMS: { level: 6.80, max: 12 }, AGO: { level: 8.10, max: 12 }, ATK: { level: 3.50, max: 8  } },
-  "tunde@oil.ng":           { PMS: { level: 7.50, max: 12 }, AGO: { level: 5.20, max: 10 }, ATK: { level: 3.80, max: 8  } },
-  "adaeze@energy.ng":       { PMS: { level: 4.60, max: 10 }, AGO: { level: 5.40, max: 9  }, ATK: { level: 2.90, max: 7  } },
-  "chukwudi@bulkdealer.ng": { PMS: { level: 4.80, max: 10 }, AGO: { level: 4.20, max: 8  }, ATK: { level: 2.10, max: 6  } },
-  "yakubu@bulkdealer.ng":   { PMS: { level: 6.10, max: 12 }, AGO: { level: 3.90, max: 8  }, ATK: { level: 1.80, max: 5  } },
-};
+const DEALER_STOCK_DEFAULTS: Record<string, Record<string, { level: number; max: number }>> = {};
 const DEALER_STOCK_KEY = "dealer_stock";
 
 const NEW_DEALER_DEFAULT = { PMS: { level: 0, max: 5 }, AGO: { level: 0, max: 5 }, ATK: { level: 0, max: 5 } };
@@ -1365,16 +1327,8 @@ function SectionLowStockAlert() {
 }
 
 // ─── Section: Buyers ──────────────────────────────────────────────────────────
-const MOCK_BUYERS = [
-  { id: "BUY-001", name: "Ikeja Fuel Ltd",        state: "Lagos",    contact: "Chidi Okeke",    phone: "0801-234-5678", products: ["PMS","AGO"],      orders: 12, total: "₦241,200,000", outstanding: "₦0",          status: "Active"   },
-  { id: "BUY-002", name: "Lekki Junction",         state: "Lagos",    contact: "Amina Bello",    phone: "0802-345-6789", products: ["AGO"],            orders: 8,  total: "₦144,000,000", outstanding: "₦36,000,000", status: "Active"   },
-  { id: "BUY-003", name: "Mainland Petroleum",     state: "Lagos",    contact: "Segun Adeyemi",  phone: "0803-456-7890", products: ["ATK"],            orders: 5,  total: "₦72,000,000",  outstanding: "₦0",          status: "Active"   },
-  { id: "BUY-004", name: "Surulere Gas Station",   state: "Lagos",    contact: "Ngozi Eze",      phone: "0804-567-8901", products: ["PMS"],            orders: 9,  total: "₦183,600,000", outstanding: "₦40,800,000", status: "Active"   },
-  { id: "BUY-005", name: "Delta Gas Co.",          state: "Delta",    contact: "Emeka Obi",      phone: "0805-678-9012", products: ["AGO","ATK"],      orders: 6,  total: "₦108,000,000", outstanding: "₦0",          status: "Active"   },
-  { id: "BUY-006", name: "Chipet Oil & Gas",       state: "Rivers",   contact: "Bola Johnson",   phone: "0806-789-0123", products: ["PMS","AGO","ATK"],orders: 15, total: "₦320,000,000", outstanding: "₦84,000,000", status: "Active"   },
-  { id: "BUY-007", name: "Kano Fuel Express",      state: "Kano",     contact: "Musa Ibrahim",   phone: "0807-890-1234", products: ["PMS"],            orders: 3,  total: "₦61,700,000",  outstanding: "₦0",          status: "Inactive" },
-  { id: "BUY-008", name: "Abuja Central Pumps",    state: "Abuja",    contact: "Fatima Garba",   phone: "0808-901-2345", products: ["PMS","AGO"],      orders: 7,  total: "₦189,000,000", outstanding: "₦0",          status: "Active"   },
-];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MOCK_BUYERS: any[] = [];
 
 function SectionBuyers() {
   const [search, setSearch]     = useState("");

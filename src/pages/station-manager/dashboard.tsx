@@ -28,33 +28,9 @@ const DEFAULT_STOCK: DepotStock = {
 };
 
 // Dealer code → email lookup
-const DEALER_CODE_MAP: Record<string, string> = {
-  "BD-CH1P3T": "dealer@energy.ng",
-  "BD-E4STF2": "emeka@bulkdealer.ng",
-  "BD-SW0L3T": "tunde@oil.ng",
-  "BD-0B1EN4": "adaeze@energy.ng",
-  "BD-D3LT45": "chukwudi@bulkdealer.ng",
-  "BD-SH3L06": "yakubu@bulkdealer.ng",
-};
-
-const DEALER_INFO: Record<string, { name: string; company: string }> = {
-  "BD-CH1P3T": { name: "John Dealer",       company: "Chipet Oil & Gas Ltd"        },
-  "BD-E4STF2": { name: "Emeka Nwachukwu",   company: "EastFuel Nigeria Ltd"         },
-  "BD-SW0L3T": { name: "Tunde Adeyemi",     company: "Southwest Oil Distributors"   },
-  "BD-0B1EN4": { name: "Adaeze Obi",        company: "Obi Energy Supplies"          },
-  "BD-D3LT45": { name: "Chukwudi Eze",      company: "Delta Petroleum Ltd"          },
-  "BD-SH3L06": { name: "Yakubu Musa",       company: "Sahel Energy Distributors"    },
-};
-
-// Default bulk dealer stock (mirrors DEALER_STOCK_DEFAULTS in bulk-dealer/dashboard.tsx)
-const DEALER_STOCK_DEFAULTS: Record<string, Record<string, { level: number; max: number }>> = {
-  "dealer@energy.ng":       { PMS: { level: 9.25, max: 15 }, AGO: { level: 7.30, max: 10 }, ATK: { level: 4.70, max: 10 } },
-  "emeka@bulkdealer.ng":    { PMS: { level: 6.80, max: 12 }, AGO: { level: 8.10, max: 12 }, ATK: { level: 3.50, max: 8  } },
-  "tunde@oil.ng":           { PMS: { level: 7.50, max: 12 }, AGO: { level: 5.20, max: 10 }, ATK: { level: 3.80, max: 8  } },
-  "adaeze@energy.ng":       { PMS: { level: 4.60, max: 10 }, AGO: { level: 5.40, max: 9  }, ATK: { level: 2.90, max: 7  } },
-  "chukwudi@bulkdealer.ng": { PMS: { level: 4.80, max: 10 }, AGO: { level: 4.20, max: 8  }, ATK: { level: 2.10, max: 6  } },
-  "yakubu@bulkdealer.ng":   { PMS: { level: 6.10, max: 12 }, AGO: { level: 3.90, max: 8  }, ATK: { level: 1.80, max: 5  } },
-};
+const DEALER_CODE_MAP: Record<string, string> = {};
+const DEALER_INFO: Record<string, { name: string; company: string }> = {};
+const DEALER_STOCK_DEFAULTS: Record<string, Record<string, { level: number; max: number }>> = {};
 
 // Capacity per product per depot in liters
 const DEPOT_CAPACITY_LITERS = 5_000_000;
